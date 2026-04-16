@@ -8,9 +8,24 @@
 
 ---
 <a name="english"></a>
+
+## 🗭️ GenericAgent-SafeLocal Enhancements
+
+> This fork of GenericAgent adds safety mechanisms and local model support to make offline experimentation safer on your Windows machine.
+
+**Key additions**
+
+- **Local LLM support:** Use a local provider (e.g. Gemma via Ollama or LM Studio) by copying `mykey_local_example.py` to `mykey.py` and adjusting the `apibase` and `model` fields.
+- **Workspace sandbox:** By default, tools are restricted to a dedicated workspace directory, preventing writes to system directories.
+- **Execution policy engine:** The `safe_guardrails.py` module introduces a `SafePolicyEngine` and `ExecutionBroker` that intercept tool calls, detect dangerous commands or paths, and block or request approval as needed.
+- **Human-in-the-loop approval:** For sensitive actions, the agent will call `ask_user` and wait for your confirmation, keeping you in control.
+
+These features are experimental; inspect the code in `safe_guardrails.py` for full details.
+
 ## 🌟 Overview
 
 **GenericAgent** is a minimal, self-evolving autonomous agent framework. Its core is just **~3K lines of code**. Through **9 atomic tools + a ~100-line Agent Loop**, it grants any LLM system-level control over a local computer — covering browser, terminal, filesystem, keyboard/mouse input, screen vision, and mobile devices (ADB).
+
 
 Its design philosophy: **don't preload skills — evolve them.**
 
